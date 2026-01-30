@@ -11,21 +11,27 @@ export const metadata: Metadata = {
   description: 'Documentation platform with ISR and i18n',
 };
 
+import { ThemeProvider } from '@/components/ThemeProvider';
+
+// ... (imports remain)
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} min-h-screen flex flex-col`}>
-        <Header />
-        <div className="flex flex-1">
-          <Sidebar />
-          <main className="flex-1 p-6 md:p-10 max-w-4xl mx-auto w-full">
-            {children}
-          </main>
-        </div>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Header />
+          <div className="flex flex-1">
+            <Sidebar />
+            <main className="flex-1 p-6 md:p-10 max-w-4xl mx-auto w-full">
+              {children}
+            </main>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
