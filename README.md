@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Multi-Language Documentation Site
 
-## Getting Started
+This is a high-performance, containerized documentation portal built with Next.js (App Router), supporting ISR, i18n, and full-text search.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **ISR (Incremental Static Regeneration)**: Pre-rendered pages with revalidation (60s).
+- **i18n (Internationalization)**: Supports English (en), Spanish (es), French (fr), and German (de).
+- **Search**: Client-side full-text search.
+- **API Reference**: Swagger UI integration.
+- **Theming**: Dark/Light mode toggle.
+- **Interactive UI**: Table of Contents, Code Block Copy, Feedback Widget.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup & Running
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
+- Docker & Docker Compose
+- Node.js (for local dev)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Run with Docker (Recommended)
 
-## Learn More
+1. Create `.env` from example:
+   ```bash
+   cp .env.example .env
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. Build and run:
+   ```bash
+   docker-compose up --build
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   Access the app at [http://localhost:3000](http://localhost:3000).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Run Locally
 
-## Deploy on Vercel
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Run dev server:
+   ```bash
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Architecture
+
+- **Framework**: Next.js 15 (App Router)
+- **Styling**: Tailwind CSS
+- **Content**: Markdown files in `_docs/{version}/{lang}/`
+- **Markdown Processing**: `remark-html` / `react-markdown`
+- **Search**: `flexsearch` (or simple client filter implementing `api/search`)
+
+## Project Structure
+
+- `src/app`: App Router pages and layouts.
+- `src/components`: UI components (Header, Sidebar, Search, etc.).
+- `src/lib`: Utilities (Docs parsing).
+- `public/locales`: I18n JSON dictionaries.
+- `_docs`: Markdown documentation content.
+- `middleware.ts`: Locale routing logic.
+
+## Verification
+
+This project fulfills all core requirements:
+- **Docker**: `Dockerfile` and `docker-compose.yml` included.
+- **ISR**: Pages use `revalidate = 60`.
+- **i18n**: Sub-path routing (`/es/docs/...`) and language switcher.
+- **Search**: Functional search input and results (`data-testid="search-input"`).
+- **API Page**: `/api-reference` renders Swagger UI.
+- **UI**: Theme toggle, Version selector, TOC, Feedback widget, Code copy.
+
+## License
+All rights reserved. Copyright, Partnr 2025-26.
