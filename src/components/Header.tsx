@@ -16,7 +16,7 @@ export default function Header({ lang }: HeaderProps) {
   return (
     <header className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 sticky top-0 z-50">
       <div className="flex items-center gap-4">
-        <Link href={`/${lang}`} className="text-xl font-bold">
+        <Link href={`/${lang}/docs/v1/introduction`} prefetch={false} className="text-xl font-bold">
           Docs Platform
         </Link>
       </div>
