@@ -7,11 +7,11 @@ import ThemeToggle from '@/components/ThemeToggle';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import VersionSelector from '@/components/VersionSelector';
 
-import { useParams } from 'next/navigation';
+interface HeaderProps {
+  lang: string;
+}
 
-export default function Header() {
-  const params = useParams();
-  const lang = (params?.lang as string) || 'en';
+export default function Header({ lang }: HeaderProps) {
 
   return (
     <header className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 sticky top-0 z-50">
