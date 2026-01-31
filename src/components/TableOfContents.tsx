@@ -8,10 +8,12 @@ export default function TableOfContents() {
 
     useEffect(() => {
         const elements = Array.from(document.querySelectorAll("h2, h3"));
-        const headingsData = elements.map((elem) => ({
-            id: elem.id,
-            text: elem.textContent || "",
-        }));
+        const headingsData = elements
+            .filter((elem) => elem.id)
+            .map((elem) => ({
+                id: elem.id,
+                text: elem.textContent || "",
+            }));
         setHeadings(headingsData);
 
         const observer = new IntersectionObserver(
@@ -43,8 +45,8 @@ export default function TableOfContents() {
                             data-testid={`toc-link-${heading.id}`}
                             data-active={activeId === heading.id}
                             className={`block hover:text-blue-600 transition-colors ${activeId === heading.id
-                                    ? "text-blue-600 font-medium"
-                                    : "text-gray-600 dark:text-gray-400"
+                                ? "text-blue-600 font-medium"
+                                : "text-gray-600 dark:text-gray-400"
                                 }`}
                             onClick={(e) => {
                                 e.preventDefault();
