@@ -7,9 +7,11 @@ export default async function LangLayout({
     children: React.ReactNode;
     params: Promise<{ lang: string }>;
 }) {
+    const { lang } = await params;
+
     return (
         <div className="flex flex-col min-h-screen">
-            <Header />
+            <Header lang={lang} />
             {children}
         </div>
     );
