@@ -1,18 +1,17 @@
 ---
-title: Introduction
-description: Getting started with our platform
+title: Introduction (v2)
+description: Getting started with our platform v2
 ---
 
-# Introduction
+# Introduction (Version 2)
 
-Welcome to the **Docs Platform**. This project demonstrates Next.js capabilities including:
-- ISR
-- i18n
-- Tailwind CSS
+Welcome to the **Docs Platform v2**. This version introduces:
+- Enhanced API features
+- Improved performance
 
 ## Getting Started
 
-To get started, simply run the docker container.
+To get started with v2, run:
 
 ```bash
 docker-compose up
